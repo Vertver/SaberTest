@@ -3,9 +3,10 @@
 #include <stdint.h>
 #include <intrin.h>
 
-#define ENABLE_FIRST_TEST false
+#define ENABLE_FIRST_TEST true
 #define ENABLE_SECOND_TEST true
-#define ENABLE_THIRD_TEST false
+#define ENABLE_THIRD_TEST true
+#define IsAllEnabled() (ENABLE_FIRST_TEST && ENABLE_SECOND_TEST && ENABLE_THIRD_TEST)
 
 #pragma region First_Test
 inline 
@@ -297,29 +298,34 @@ private:
 void
 FirstTest()
 {
+    if constexpr (IsAllEnabled()) printf("####################FIRST TEST####################\n");
 	printf("first variable: ");
 	PrintBinary(uint32_t(0x4D5A0000));
 	printf("second variable: ");
 	PrintBinary(uint32_t(0xFACEF00D));
 	printf("third variable: ");
 	PrintBinary(size_t(0xDEADBEEFDEADBEEF));
+    if (IsAllEnabled()) printf("\n");
 }
 
 void 
 SecondTest()
 {
+    if constexpr (IsAllEnabled()) printf("####################SECOND TEST####################\n");
     const char pFirstString[] = "AAA BBB AAA\n";
     const char pSecondString[] = "And I'll strike down upon thee";
     const char pThirdString[] = " with great vengeance and furious Anger those who attempt to poison and destroy\nmy brothers. And you will know My name is the Lord when I lay my vengeance upon thee\n";
 	RemoveDups(const_cast<char*>(pFirstString));
 	RemoveDups(const_cast<char*>(pSecondString));
 	RemoveDups(const_cast<char*>(pThirdString));
-    printf("%s%s%s", pFirstString, pSecondString, pThirdString);
+    printf("%s%s%s\n", pFirstString, pSecondString, pThirdString);
+    if constexpr (IsAllEnabled()) printf("\n");
 }
 
 void 
 ThirdTest()
 {
+    if constexpr (IsAllEnabled()) printf("####################THIRD TEST####################\n");
     const char* pFilePath = "I:\\te.txt";
 	CListManipulator manipulator;
 	manipulator.put_data("Hi");
