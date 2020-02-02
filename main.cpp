@@ -95,7 +95,6 @@ struct FileStructHeader {
 
 // структуру ListNode модифицровать нельзя
 struct ListNode {
-public:
     /* 
         На MSVC без конструктора все указатели и дата внутри становится 0xFD, 
         поэтому без модификаций никак :( 
@@ -145,7 +144,8 @@ private:
         count = 0;
 	}
 
-    size_t GetEndFileSize(ListNode* pFirst) {
+    size_t GetEndFileSize(ListNode* pFirst)
+    {
         size_t retSize = 0;
         ListNode* pTemp = pFirst;
         while (pTemp) {
