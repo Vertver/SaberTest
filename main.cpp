@@ -319,7 +319,6 @@ SecondTest()
 	RemoveDups(const_cast<char*>(pSecondString));
 	RemoveDups(const_cast<char*>(pThirdString));
     printf("%s%s%s\n", pFirstString, pSecondString, pThirdString);
-    if constexpr (IsAllEnabled()) printf("\n");
 }
 
 void 
