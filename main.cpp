@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <intrin.h>
+#include <cassert>
 
 #define ENABLE_FIRST_TEST true
 #define ENABLE_SECOND_TEST true
@@ -95,15 +96,9 @@ struct FileStructHeader {
 
 // структуру ListNode модифицровать нельзя
 struct ListNode {
-    /* 
-        На MSVC без конструктора все указатели и дата внутри становится 0xFD, 
-        поэтому без модификаций никак :( 
-    */
-    ListNode() : prev(nullptr), next(nullptr), rand(nullptr), data() {}     
-
-    ListNode* prev;
-    ListNode* next;
-    ListNode* rand; // указатель на произвольный элемент данного списка, либо NULL
+    ListNode* prev = nullptr;
+    ListNode* next = nullptr;
+    ListNode* rand = nullptr; // указатель на произвольный элемент данного списка, либо NULL
 	std::string data;
 };
 
@@ -325,7 +320,7 @@ void
 ThirdTest()
 {
     if constexpr (IsAllEnabled()) printf("####################THIRD TEST####################\n");
-    const char* pFilePath = "I:\\te.txt";
+    const char* pFilePath = "C:\\1\\te.txt";
 	CListManipulator manipulator;
 	manipulator.put_data("Hi");
 	manipulator.put_data("I'm serialized data!");
